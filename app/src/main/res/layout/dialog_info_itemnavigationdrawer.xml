@@ -24,17 +24,11 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mô tả: Đây là đồ án cuối kì môn Công nghệ phần mềm chuyên sâu được hướng dẫn bởi giảng viên trường: thầy Phan Trung Hiếu"/>
+        android:text="Mô tả: Đây là đồ án cuối kì môn Công nghệ phần mềm chuyên sâu được hướng dẫn bởi giảng viên trường: thầy Trần Anh "/>
     <TextView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Liên hệ: mọi thắc mắc, ý kiến xin liên hệ hòm thư: nhocchoda@gmail.com , thường sẽ trả lời trong vòng 24h."/>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="(-Nhoi Nhoi-)"/>
+        android:text="Liên hệ: mọi thắc mắc, ý kiến xin liên hệ hòm thư: cuonglevan@gmail.com , thường sẽ trả lời trong vòng 24h."/>
 
 </LinearLayout>
