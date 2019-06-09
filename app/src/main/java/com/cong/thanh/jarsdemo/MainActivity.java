@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
     Toolbar toolbar;
     NavigationView navigationView;
     public static Database database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
