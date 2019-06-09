@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
+        fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
 
     }
     private NavigationView.OnNavigationItemSelectedListener nOnNavigationDrawerItemSelectedListener=new NavigationView.OnNavigationItemSelectedListener() {
@@ -136,14 +136,66 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
         switch (item.getItemId()){
             case R.id.itemThetlap: ItemThietLapPhanTram();return true;
             case R.id.itemHuongdan:ItemHuongDan();return true;
-            case R.id.itemCaiDat: Toast.makeText(MainActivity.this,"Tính năng cài đặt hiện đang được phát triển thêm. \n" +
-                    "Sẽ có trong thời gian sớm nhất",Toast.LENGTH_SHORT).show();return true;
+            case R.id.itemCaiDat:
+                resetDatabase()
+                ;return true;
             //gọi ra menu navigation khi nhấn vào, ID này là ID mặc định có sẵn trong android
             case android.R.id.home: mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void resetDatabase(){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setMessage("asdsadsadsa")
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // FIRE ZE MISSILES!
+//                        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+//                        android.support.v4.app.FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//                        fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
+//                        //Toast.makeText(MainActivity.this,"Tính năng cài đặt hiện đang được phát triển thêm. \n" +"Sẽ có trong thời gian sớm nhất",Toast.LENGTH_SHORT).show();
+//                        database.QueryData("DELETE FROM TaiKhoan");
+//                        //reset lại các ghi chép
+//                        database.QueryData("DELETE FROM GhiChep");
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // User cancelled the dialog
+//                    }
+//                });
+//        // Create the AlertDialog object and return it
+//        builder.create();
+//        builder.show();
+//        final Dialog dialogThietLapPhanTram=new Dialog(MainActivity.this);
+//        dialogThietLapPhanTram.setContentView(R.layout.dialog_menuitem_thietlap_phantram);
+//        dialogThietLapPhanTram.show();
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("DELETE")
+                .setMessage("Are you sure you want to delete?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
+                        //Toast.makeText(MainActivity.this,"Tính năng cài đặt hiện đang được phát triển thêm. \n" +"Sẽ có trong thời gian sớm nhất",Toast.LENGTH_SHORT).show();
+                        database.QueryData("DELETE FROM TaiKhoan");
+                        //reset lại các ghi chép
+                        database.QueryData("DELETE FROM GhiChep");
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
 
     //xử lí interface, ở sau khi chọn ok ở dialog xóa thì refesh fragment tài khoản
     @Override
@@ -260,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                         "chi mà bạn thường xuyên sử dụng và cần thiết trong cuộc sống của bạn, bạn càng kiếm nhiều tiền thì nhu cầu về cuộc sống của bạn càng cao và càng nhiều. \n" +
                         "Hũ này này giúp bạn điều chỉnh được các khoản chi tiêu một cách hợp lý hơn và xây dựng được khả năng hạn chế chi tiêu hoang phí\n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -280,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                         " Hũ này dành cho những kế hoạch lâu dài của bản thân bạn như mua nhà,mua xe, làm đám cưới, chuẩn bị sinh con, đầu tư, trả nợ,…" +
                         " giúp bạn tiết kiệm và nắm bắt được mục đích bản thân cần giữ gìn tiền bạc và đẩy mạnh tiết kiệm hơn\n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -301,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                         "Việc nâng cao kiến thức không bao giờ là thừa thãi và sẽ giúp ích rất nhiều cho công việc của bạn trong tương lai.\n "  +
                         "Bên cạnh đó, đối với những cá nhân đã có gia đình thì khoản tiền này đặc biệt cần thiết cho con cái của bạn khi đang ở độ tuổi đi học.\n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -323,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                         " ta có thể chọn lựa các hình thức đầu tư có quy mô khác để sinh lời.\n" +
                         " Chính vì vậy, chiếc hũ thứ 4 mới có tên gọi là Financial Freedom, tạo cơ hội cho bạn làm giàu theo mong muốn của bản thân. \n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -344,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                         "Hũ này giúp bạn có thể giải tỏa căng thẳng sau thời gian làm việc vất vả, cũng như tạo thêm hứng khởi để tiếp tục làm việc, kiếm tiền.\n" +
                         "Thậm chí phương pháp JARS còn khuyên bạn nên đặt khoản chi này vào danh mục bắt buộc phải thực hiện, và nên dùng hết. Bạn cũng có thể tận dụng khoản chi này nhiều tháng một lần, thành một số tiền lớn và lên kế hoạch cho một chuyến du lịch thật thú vị để tự thưởng cho bản thân.\n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com mọi thắc mắc sẽ được giải đáp nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -363,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
                 builder.setMessage("Cuộc sống là phải biết cho và nhận, do đó chiếc hũ thứ 6 sẽ giúp bạn có thể dành được dùng cho những hoạt động chia sẻ, quan tâm đến những người xung quanh. Ta có thể để khoản tiền này để dành ra cho người thân trong gia đình, làm từ thiện, giúp đỡ người khác khi cần. \n" +
                         "Việc cho đi sẽ luôn là cơ hội để chúng ta nhận lại những điều quý báu và cơ hội được người khác giúp đỡ khi cần.\n" +
                         "\n"+
-                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: nhocchoda@gmail.com thường sẽ trả lời nhanh nhất trong vòng 24h");
+                        "Nếu bạn có thắc mắc, câu hỏi hãy gửi mail về hòm thư: cuonglevan@gmail.com thường sẽ trả lời nhanh nhất trong vòng 24h");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

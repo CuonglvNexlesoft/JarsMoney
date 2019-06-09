@@ -23,8 +23,8 @@ public class PLAYActivity extends AppCompatActivity {
     Button btnThemMucChiPLAY,btnThemGhiChepPLAY;
     TextView txtTienBanDauPLAY,txtTienDaChiPLAY,txtTienConLaiPLAY;
     ListView listViewPLAY;
-//    GhiChepPLAYAdapter adapter;
-//    ArrayList<GhiChepPLAY> arrayGhiChepPLAY;
+    GhiChepPLAYAdapter adapter;
+    ArrayList<GhiChepPLAY> arrayGhiChepPLAY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +42,20 @@ public class PLAYActivity extends AppCompatActivity {
         addArrayGhiChepPLAY();
 
         //thêm ghi chép
-        btnThemGhiChepPLAY.setOnClickListener(mOnClickListener);
+        //btnThemGhiChepPLAY.setOnClickListener(mOnClickListener);
     }
-    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(PLAYActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
+//    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(PLAYActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
+//        }
+//    };
     private void addArrayGhiChepPLAY() {
-//        arrayGhiChepPLAY=new ArrayList<>();
-//        GetDaTa();
-//        settext();
-//        adapter=new GhiChepPLAYAdapter(PLAYActivity.this,R.layout.ghichep_play_custom,arrayGhiChepPLAY);
-//        listViewPLAY.setAdapter(adapter);
+        arrayGhiChepPLAY=new ArrayList<>();
+        GetDaTa();
+        settext();
+        adapter=new GhiChepPLAYAdapter(PLAYActivity.this,R.layout.ghichep_play_custom,arrayGhiChepPLAY);
+        listViewPLAY.setAdapter(adapter);
     }
 
     private void settext() {
@@ -95,15 +95,15 @@ public class PLAYActivity extends AppCompatActivity {
     }
 
     private void GetDaTa() {
-//        Cursor getdataGhiChepPLAY= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'PLAY'");
-//        arrayGhiChepPLAY.clear();
-//        while(getdataGhiChepPLAY.moveToNext()){
-//            String mucchi=getdataGhiChepPLAY.getString(0);
-//            long sotien=getdataGhiChepPLAY.getLong(1);
-//            String ghichu=getdataGhiChepPLAY.getString(2);
-//            String ngaychi=getdataGhiChepPLAY.getString(3);
-//            arrayGhiChepPLAY.add(new GhiChepPLAY(mucchi,format(sotien),ghichu,ngaychi));
-//        }
+        Cursor getdataGhiChepPLAY= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'PLAY'");
+        arrayGhiChepPLAY.clear();
+        while(getdataGhiChepPLAY.moveToNext()){
+            String mucchi=getdataGhiChepPLAY.getString(0);
+            long sotien=getdataGhiChepPLAY.getLong(1);
+            String ghichu=getdataGhiChepPLAY.getString(2);
+            String ngaychi=getdataGhiChepPLAY.getString(3);
+            arrayGhiChepPLAY.add(new GhiChepPLAY(mucchi,format(sotien),ghichu,ngaychi));
+        }
     }
     private String format(long s){
 
@@ -114,8 +114,8 @@ public class PLAYActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btnThemMucChiPLAY=(Button)findViewById(R.id.buttonThemMucChiPLAY);
-        btnThemGhiChepPLAY=(Button)findViewById(R.id.buttonThemGhiChepPLAY);
+        //btnThemMucChiPLAY=(Button)findViewById(R.id.buttonThemMucChiPLAY);
+        //btnThemGhiChepPLAY=(Button)findViewById(R.id.buttonThemGhiChepPLAY);
         txtTienBanDauPLAY=(TextView) findViewById(R.id.textViewTienBanDauPLAY);
         txtTienDaChiPLAY=(TextView)findViewById(R.id.textViewTienDaChiPLAY);
         txtTienConLaiPLAY=(TextView)findViewById(R.id.textViewTienConLaiPLAY);

@@ -23,8 +23,8 @@ public class LTSSActivity extends AppCompatActivity {
     Button btnThemMucChiLTSS,btnThemGhiChepLTSS;
     TextView txtTienBanDauLTSS,txtTienDaChiLTSS,txtTienConLaiLTSS;
     ListView listViewLTSS;
-    //GhiChepLTSSAdapter adapter;
-    //ArrayList<GhiChepLTSS> arrayGhiChepLTSS;
+    GhiChepLTSSAdapter adapter;
+    ArrayList<GhiChepLTSS> arrayGhiChepLTSS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +42,20 @@ public class LTSSActivity extends AppCompatActivity {
         addArrayGhiChepLTSS();
 
         //thêm ghi chép
-        btnThemGhiChepLTSS.setOnClickListener(mOnClickListener);
+        //btnThemGhiChepLTSS.setOnClickListener(mOnClickListener);
     }
-    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(LTSSActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
+//    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(LTSSActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
+//        }
+//    };
     private void addArrayGhiChepLTSS() {
-//        arrayGhiChepLTSS=new ArrayList<>();
-//        GetDaTa();
-//        settext();
-//        adapter=new GhiChepLTSSAdapter(LTSSActivity.this,R.layout.ghichep_ltss_custom,arrayGhiChepLTSS);
-//        listViewLTSS.setAdapter(adapter);
+        arrayGhiChepLTSS=new ArrayList<>();
+        GetDaTa();
+        settext();
+        adapter=new GhiChepLTSSAdapter(LTSSActivity.this,R.layout.ghichep_ltss_custom,arrayGhiChepLTSS);
+        listViewLTSS.setAdapter(adapter);
     }
 
     private void settext() {
@@ -95,15 +95,15 @@ public class LTSSActivity extends AppCompatActivity {
     }
 
     private void GetDaTa() {
-//        Cursor getdataGhiChepLTSS= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'LTSS'");
-//        arrayGhiChepLTSS.clear();
-//        while(getdataGhiChepLTSS.moveToNext()){
-//            String mucchi=getdataGhiChepLTSS.getString(0);
-//            long sotien=getdataGhiChepLTSS.getLong(1);
-//            String ghichu=getdataGhiChepLTSS.getString(2);
-//            String ngaychi=getdataGhiChepLTSS.getString(3);
-//            arrayGhiChepLTSS.add(new GhiChepLTSS(mucchi,format(sotien),ghichu,ngaychi));
-//        }
+        Cursor getdataGhiChepLTSS= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'LTSS'");
+        arrayGhiChepLTSS.clear();
+        while(getdataGhiChepLTSS.moveToNext()){
+            String mucchi=getdataGhiChepLTSS.getString(0);
+            long sotien=getdataGhiChepLTSS.getLong(1);
+            String ghichu=getdataGhiChepLTSS.getString(2);
+            String ngaychi=getdataGhiChepLTSS.getString(3);
+            arrayGhiChepLTSS.add(new GhiChepLTSS(mucchi,format(sotien),ghichu,ngaychi));
+        }
     }
     private String format(long s){
 
@@ -114,8 +114,8 @@ public class LTSSActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btnThemMucChiLTSS=(Button)findViewById(R.id.buttonThemMucChiLTSS);
-        btnThemGhiChepLTSS=(Button)findViewById(R.id.buttonThemGhiChepLTSS);
+        //btnThemMucChiLTSS=(Button)findViewById(R.id.buttonThemMucChiLTSS);
+        //btnThemGhiChepLTSS=(Button)findViewById(R.id.buttonThemGhiChepLTSS);
         txtTienBanDauLTSS=(TextView) findViewById(R.id.textViewTienBanDauLTSS);
         txtTienDaChiLTSS=(TextView)findViewById(R.id.textViewTienDaChiLTSS);
         txtTienConLaiLTSS=(TextView)findViewById(R.id.textViewTienConLaiLTSS);

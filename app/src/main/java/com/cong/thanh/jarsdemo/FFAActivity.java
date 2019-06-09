@@ -23,8 +23,8 @@ public class FFAActivity extends AppCompatActivity {
     Button btnThemMucChiFFA,btnThemGhiChepFFA;
     TextView txtTienBanDauFFA,txtTienDaChiFFA,txtTienConLaiFFA;
     ListView listViewFFA;
-//    GhiChepFFAAdapter adapter;
-//    ArrayList<GhiChepFFA> arrayGhiChepFFA;
+    GhiChepFFAAdapter adapter;
+    ArrayList<GhiChepFFA> arrayGhiChepFFA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +42,20 @@ public class FFAActivity extends AppCompatActivity {
         addArrayGhiChepFFA();
 
         //thêm ghi chép
-        btnThemGhiChepFFA.setOnClickListener(mOnClickListener);
+        //btnThemGhiChepFFA.setOnClickListener(mOnClickListener);
     }
-    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(FFAActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
+//    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(FFAActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
+//        }
+//    };
     private void addArrayGhiChepFFA() {
-//        arrayGhiChepFFA=new ArrayList<>();
-//        GetDaTa();
-//        settext();
-//        adapter=new GhiChepFFAAdapter(FFAActivity.this,R.layout.ghichep_ffa_custom,arrayGhiChepFFA);
-//        listViewFFA.setAdapter(adapter);
+        arrayGhiChepFFA=new ArrayList<>();
+        GetDaTa();
+        settext();
+        adapter=new GhiChepFFAAdapter(FFAActivity.this,R.layout.ghichep_ffa_custom,arrayGhiChepFFA);
+        listViewFFA.setAdapter(adapter);
     }
 
     private void settext() {
@@ -95,15 +95,15 @@ public class FFAActivity extends AppCompatActivity {
     }
 
     private void GetDaTa() {
-//        Cursor getdataGhiChepFFA= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'FFA'");
-//        arrayGhiChepFFA.clear();
-//        while(getdataGhiChepFFA.moveToNext()){
-//            String mucchi=getdataGhiChepFFA.getString(0);
-//            long sotien=getdataGhiChepFFA.getLong(1);
-//            String ghichu=getdataGhiChepFFA.getString(2);
-//            String ngaychi=getdataGhiChepFFA.getString(3);
-//            arrayGhiChepFFA.add(new GhiChepFFA(mucchi,format(sotien),ghichu,ngaychi));
-//        }
+        Cursor getdataGhiChepFFA= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'FFA'");
+        arrayGhiChepFFA.clear();
+        while(getdataGhiChepFFA.moveToNext()){
+            String mucchi=getdataGhiChepFFA.getString(0);
+            long sotien=getdataGhiChepFFA.getLong(1);
+            String ghichu=getdataGhiChepFFA.getString(2);
+            String ngaychi=getdataGhiChepFFA.getString(3);
+            arrayGhiChepFFA.add(new GhiChepFFA(mucchi,format(sotien),ghichu,ngaychi));
+        }
     }
     private String format(long s){
 
@@ -114,8 +114,8 @@ public class FFAActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btnThemMucChiFFA=(Button)findViewById(R.id.buttonThemMucChiFFA);
-        btnThemGhiChepFFA=(Button)findViewById(R.id.buttonThemGhiChepFFA);
+        //btnThemMucChiFFA=(Button)findViewById(R.id.buttonThemMucChiFFA);
+        //btnThemGhiChepFFA=(Button)findViewById(R.id.buttonThemGhiChepFFA);
         txtTienBanDauFFA=(TextView) findViewById(R.id.textViewTienBanDauFFA);
         txtTienDaChiFFA=(TextView)findViewById(R.id.textViewTienDaChiFFA);
         txtTienConLaiFFA=(TextView)findViewById(R.id.textViewTienConLaiFFA);
