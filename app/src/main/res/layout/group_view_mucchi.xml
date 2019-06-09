@@ -6,7 +6,6 @@
     <TextView
         android:gravity="center"
         android:text="Title"
-        android:textColor="#ffffff"
         android:layout_marginLeft="50dp"
         android:textSize="30sp"
         android:textStyle="bold"
