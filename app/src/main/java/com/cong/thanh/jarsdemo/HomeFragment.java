@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,8 +67,9 @@ public class HomeFragment extends Fragment {
         gvJARS=(GridView)view.findViewById(R.id.GridVJARS);
 
         //khai báo calendar
-        calendarBegin=Calendar.getInstance();
+
         calendarEnd=Calendar.getInstance();
+        calendarBegin=Calendar.getInstance();
         calendarcurrent=Calendar.getInstance();
 
         //lấy thời gian hiện tại
@@ -113,9 +115,9 @@ public class HomeFragment extends Fragment {
         ThemTaiKhoan.setOnClickListener(mOnClickListener);
         return view;
     }
-    //reset lại các hũ khi thời gian kết thúc bằng với thời gian hiện tại
+//reset lại các hũ khi thời gian kết thúc bằng với thời gian hiện tại
     private void resetDate() {
-        if (calendarcurrent.getTimeInMillis()>=calendarEnd.getTimeInMillis()){
+        if (calendarcurrent.getTimeInMillis() > calendarEnd.getTimeInMillis()){
             AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
             builder.setMessage("Ngày kết thúc thời hạn hiện tại đã đến bạn có muốn RESET lại các hũ không\n" +
                     "Nếu bạn chọn CÓ. Bạn sẽ phải thiết lập thời hạn tiếp theo cho các hũ\n" +
@@ -132,7 +134,7 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             calendarEnd.set(year,month,dayOfMonth);
-                            if(calendarEnd.getTimeInMillis()<calendarBegin.getTimeInMillis())Toast.makeText(getActivity(),"Ngày kết thúc phải lớn hơn ngày bắt đầu",Toast.LENGTH_LONG).show();
+                            if(calendarEnd.getTimeInMillis() <= calendarBegin.getTimeInMillis())Toast.makeText(getActivity(),"Ngày kết thúc phải lớn hơn ngày bắt đầu",Toast.LENGTH_LONG).show();
                             else {
                                 MainActivity.database.QueryData("UPDATE DateEnd SET enddate = '"+formatIn.format(calendarEnd.getTime())+"'");
                                 GetDataDate();
@@ -190,7 +192,9 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     calendarBegin.set(year,month,dayOfMonth);
-                    if (calendarEnd.getTimeInMillis()< calendarBegin.getTimeInMillis()) Toast.makeText(getActivity(),"Ngày bắt đầu phải nhỏ hơn ngày kết thúc",Toast.LENGTH_LONG).show();
+                    if (calendarBegin.getTimeInMillis() > calendarEnd.getTimeInMillis()) {
+                        Toast.makeText(getActivity(),"Ngày bắt đầu phải nhỏ hơn ngày kết thúc",Toast.LENGTH_LONG).show();
+                    }
                     else {
                         MainActivity.database.QueryData("UPDATE DateBegin SET begindate = '"+formatIn.format(calendarBegin.getTime())+"'");
                         GetDataDate();
@@ -208,9 +212,10 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     calendarEnd.set(year,month,dayOfMonth);
-                    if(calendarEnd.getTimeInMillis()<calendarBegin.getTimeInMillis())Toast.makeText(getActivity(),"Ngày kết thúc phải lớn hơn ngày bắt đầu",Toast.LENGTH_LONG).show();
+                    if(calendarEnd.getTimeInMillis() <= calendarBegin.getTimeInMillis())Toast.makeText(getActivity(),"Ngày kết thúc phải lớn hơn ngày bắt đầu",Toast.LENGTH_LONG).show();
                     else {
                         MainActivity.database.QueryData("UPDATE DateEnd SET enddate = '"+formatIn.format(calendarEnd.getTime())+"'");
+                        MainActivity.database.QueryData("UPDATE DateBegin SET begindate = '"+formatIn.format(calendarcurrent.getTime())+"'");
                         GetDataDate();
                     }
                 }
@@ -220,92 +225,92 @@ public class HomeFragment extends Fragment {
     };
     //sự kiện click khi thêm tài khoản
     private Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            DialogThemTaiKhoan();
+            @Override
+            public void onClick(View v) {
+                DialogThemTaiKhoan();
 
-        }
+            }
 
-        //hàm gọi dialog Them tài khoản và xử lý sự kiện trong dialog
-        private void DialogThemTaiKhoan() {
-            final Dialog dialogThemTaiKhoan=new Dialog(getActivity());
-            dialogThemTaiKhoan.setContentView(R.layout.dialog_them_taikhoan);
-            dialogThemTaiKhoan.show();
+            //hàm gọi dialog Them tài khoản và xử lý sự kiện trong dialog
+            private void DialogThemTaiKhoan() {
+                final Dialog dialogThemTaiKhoan=new Dialog(getActivity());
+                dialogThemTaiKhoan.setContentView(R.layout.dialog_them_taikhoan);
+                dialogThemTaiKhoan.show();
 
-            //ánh xạ xml dialog_them_taikhoan
-            final EditText edtNhapTenTaiKhoan=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapTenTaiKhoan);
-            final EditText edtNhapSoTien=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapSoTien);
-            final EditText edtNhapGhiChu=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapGhiChu);
-            Button btnHuy=(Button)dialogThemTaiKhoan.findViewById(R.id.button_huy_them_taikhoan);
-            Button btnLuu=(Button)dialogThemTaiKhoan.findViewById(R.id.button_luu_them_tai_khoan);
+                //ánh xạ xml dialog_them_taikhoan
+                final EditText edtNhapTenTaiKhoan=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapTenTaiKhoan);
+                final EditText edtNhapSoTien=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapSoTien);
+                final EditText edtNhapGhiChu=(EditText)dialogThemTaiKhoan.findViewById(R.id.editTextNhapGhiChu);
+                Button btnHuy=(Button)dialogThemTaiKhoan.findViewById(R.id.button_huy_them_taikhoan);
+                Button btnLuu=(Button)dialogThemTaiKhoan.findViewById(R.id.button_luu_them_tai_khoan);
 
-            //sự kiện khi ấn vào nút hủy
-            btnHuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialogThemTaiKhoan.cancel();
-                    //hoặc dialogThemTaiKhoan.dismiss();
-                }
-            });
+                //sự kiện khi ấn vào nút hủy
+                btnHuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogThemTaiKhoan.cancel();
+                        //hoặc dialogThemTaiKhoan.dismiss();
+                    }
+                });
 
-            //format số nhập vào thành dạng #,###,###,###
-            edtNhapSoTien.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //format số nhập vào thành dạng #,###,###,###
+                edtNhapSoTien.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+                    }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                }
+                    }
 
-                @Override
-                public void afterTextChanged(Editable s) {
-                    edtNhapSoTien.removeTextChangedListener(this);
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        edtNhapSoTien.removeTextChangedListener(this);
 
-                    try {
-                        String originalString = s.toString();
+                        try {
+                            String originalString = s.toString();
 
-                        Long longval;
-                        if (originalString.contains(",")) {
-                            originalString = originalString.replaceAll(",", "");
-                        }
-                        longval = Long.parseLong(originalString);
+                            Long longval;
+                            if (originalString.contains(",")) {
+                                originalString = originalString.replaceAll(",", "");
+                            }
+                            longval = Long.parseLong(originalString);
 
 //                            DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
 //                            formatter.applyPattern("#,###,###,###");
 //                            String formattedString = formatter.format(longval);
 
-                        //setting text after format to EditText
-                        edtNhapSoTien.setText(format(longval));
-                        edtNhapSoTien.setSelection(edtNhapSoTien.getText().length());
-                    } catch (NumberFormatException nfe) {
-                        nfe.printStackTrace();
+                            //setting text after format to EditText
+                            edtNhapSoTien.setText(format(longval));
+                            edtNhapSoTien.setSelection(edtNhapSoTien.getText().length());
+                        } catch (NumberFormatException nfe) {
+                            nfe.printStackTrace();
+                        }
+
+                        edtNhapSoTien.addTextChangedListener(this);
+
                     }
+                });
 
-                    edtNhapSoTien.addTextChangedListener(this);
+                //sự kiện click khi nhập vào số tiền
+                btnLuu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(edtNhapSoTien.length()==0||edtNhapSoTien.getText().toString().equals("0")) Toast.makeText(getActivity(),"Số tiền không được bỏ trống hoặc bằng 0",Toast.LENGTH_SHORT).show();
+                        else if(edtNhapSoTien.length()>17)Toast.makeText(getActivity(),"Số tiền không vượt quá 13 chữ số",Toast.LENGTH_SHORT).show();
+                        else {
+                            String ten=edtNhapTenTaiKhoan.getText().toString();
+                            String sotien=edtNhapSoTien.getText().toString().replaceAll(",","");
+                            long st = 0;
+                            try {
+                                st=Long.parseLong(sotien);
+                            }catch (NumberFormatException abt){Toast.makeText(getActivity(),"Nhập lại",Toast.LENGTH_SHORT).show(); }
+                            String ghichu=edtNhapGhiChu.getText().toString();
+                            MainActivity.database.QueryData("INSERT INTO TaiKhoan VALUES(null, '"+ten+"', '"+st+"', '"+ghichu+"')");
 
-                }
-            });
-
-            //sự kiện click khi nhập vào số tiền
-            btnLuu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(edtNhapSoTien.length()==0||edtNhapSoTien.getText().toString().equals("0")) Toast.makeText(getActivity(),"Số tiền không được bỏ trống hoặc bằng 0",Toast.LENGTH_SHORT).show();
-                    else if(edtNhapSoTien.length()>17)Toast.makeText(getActivity(),"Số tiền không vượt quá 13 chữ số",Toast.LENGTH_SHORT).show();
-                    else {
-                        String ten=edtNhapTenTaiKhoan.getText().toString();
-                        String sotien=edtNhapSoTien.getText().toString().replaceAll(",","");
-                        long st = 0;
-                        try {
-                            st=Long.parseLong(sotien);
-                        }catch (NumberFormatException abt){Toast.makeText(getActivity(),"Nhập lại",Toast.LENGTH_SHORT).show(); }
-                        String ghichu=edtNhapGhiChu.getText().toString();
-                        MainActivity.database.QueryData("INSERT INTO TaiKhoan VALUES(null, '"+ten+"', '"+st+"', '"+ghichu+"')");
-
-                        getDaTa();
+                            getDaTa();
 
 //                            Bundle bundle=new Bundle();
 //                            bundle.putString("tentaikhoan",(String) edtNhapTenTaiKhoan.getText().toString() );
@@ -314,15 +319,15 @@ public class HomeFragment extends Fragment {
 //                            TaiKhoanFragment taiKhoanFragment=new TaiKhoanFragment();
 //                            taiKhoanFragment.setArguments(bundle);
 
-                        dialogThemTaiKhoan.cancel();
+                            dialogThemTaiKhoan.cancel();
+                        }
+
                     }
+                });
 
-                }
-            });
+            }
 
-        }
-
-    };
+        };
     private String format(long s){
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
         formatter.applyPattern("#,###,###,###");
