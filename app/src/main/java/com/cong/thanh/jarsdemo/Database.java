@@ -41,8 +41,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS DateBegin(begindate Date)");
         db.execSQL("CREATE TABLE IF NOT EXISTS DateEnd(enddate Date)");
         //thêm dữ liệu mặc định vào bảng DateBeginEnd
-        db.execSQL("INSERT INTO DateBegin VALUES('2018-02-01')");
-        db.execSQL("INSERT INTO DateEnd VALUES('2018-03-01')");
+        db.execSQL("INSERT INTO DateBegin VALUES('2019-04-01')");
+        db.execSQL("INSERT INTO DateEnd VALUES('2019-05-01')");
         //thêm dữ liệu mặc định vào bảng MucChi
         db.execSQL("INSERT INTO MucChi VALUES(null, 'NEC', 'Ăn uống')");
         db.execSQL("INSERT INTO MucChi VALUES(null, 'NEC', 'Hóa đơn tiền Điện')");
