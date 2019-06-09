@@ -22,9 +22,9 @@ public class EDUActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button btnThemMucChiEDU,btnThemGhiChepEDU;
     TextView txtTienBanDauEDU,txtTienDaChiEDU,txtTienConLaiEDU;
-//    ListView listViewEDU;
-//    GhiChepEDUAdapter adapter;
-//    ArrayList<GhiChepEDU> arrayGhiChepEDU;
+    ListView listViewEDU;
+    GhiChepEDUAdapter adapter;
+    ArrayList<GhiChepEDU> arrayGhiChepEDU;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +42,20 @@ public class EDUActivity extends AppCompatActivity {
         addArrayGhiChepEDU();
 
         //thêm ghi chép
-        btnThemGhiChepEDU.setOnClickListener(mOnClickListener);
+        //btnThemGhiChepEDU.setOnClickListener(mOnClickListener);
     }
-    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(EDUActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
+//    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(EDUActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
+//        }
+//    };
     private void addArrayGhiChepEDU() {
-//        arrayGhiChepEDU=new ArrayList<>();
-//        GetDaTa();
-//        settext();
-//        adapter=new GhiChepEDUAdapter(EDUActivity.this,R.layout.ghichep_edu_custom,arrayGhiChepEDU);
-//        listViewEDU.setAdapter(adapter);
+        arrayGhiChepEDU=new ArrayList<>();
+        GetDaTa();
+        settext();
+        adapter=new GhiChepEDUAdapter(EDUActivity.this,R.layout.ghichep_edu_custom,arrayGhiChepEDU);
+        listViewEDU.setAdapter(adapter);
     }
 
     private void settext() {
@@ -95,15 +95,15 @@ public class EDUActivity extends AppCompatActivity {
     }
 
     private void GetDaTa() {
-//        Cursor getdataGhiChepEDU= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'EDU'");
-//        arrayGhiChepEDU.clear();
-//        while(getdataGhiChepEDU.moveToNext()){
-//            String mucchi=getdataGhiChepEDU.getString(0);
-//            long sotien=getdataGhiChepEDU.getLong(1);
-//            String ghichu=getdataGhiChepEDU.getString(2);
-//            String ngaychi=getdataGhiChepEDU.getString(3);
-//            arrayGhiChepEDU.add(new GhiChepEDU(mucchi,format(sotien),ghichu,ngaychi));
-//        }
+        Cursor getdataGhiChepEDU= MainActivity.database.GetData("SELECT MucCon,SoTienGhiChep,GhiChuGhiChep,DateSelect FROM GhiChep WHERE MucCha = 'EDU'");
+        arrayGhiChepEDU.clear();
+        while(getdataGhiChepEDU.moveToNext()){
+            String mucchi=getdataGhiChepEDU.getString(0);
+            long sotien=getdataGhiChepEDU.getLong(1);
+            String ghichu=getdataGhiChepEDU.getString(2);
+            String ngaychi=getdataGhiChepEDU.getString(3);
+            arrayGhiChepEDU.add(new GhiChepEDU(mucchi,format(sotien),ghichu,ngaychi));
+        }
     }
     private String format(long s){
 
@@ -114,12 +114,12 @@ public class EDUActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btnThemMucChiEDU=(Button)findViewById(R.id.buttonThemMucChiEDU);
-        btnThemGhiChepEDU=(Button)findViewById(R.id.buttonThemGhiChepEDU);
+        //btnThemMucChiEDU=(Button)findViewById(R.id.buttonThemMucChiEDU);
+        //btnThemGhiChepEDU=(Button)findViewById(R.id.buttonThemGhiChepEDU);
         txtTienBanDauEDU=(TextView) findViewById(R.id.textViewTienBanDauEDU);
         txtTienDaChiEDU=(TextView)findViewById(R.id.textViewTienDaChiEDU);
         txtTienConLaiEDU=(TextView)findViewById(R.id.textViewTienConLaiEDU);
-        //listViewEDU=(ListView)findViewById(R.id.listGhiChepEDU);
+        listViewEDU=(ListView)findViewById(R.id.listGhiChepEDU);
     }
 
     @Override

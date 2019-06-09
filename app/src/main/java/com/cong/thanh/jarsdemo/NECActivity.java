@@ -42,24 +42,14 @@ public class NECActivity extends AppCompatActivity {
         addArrayGhiChepNEC();
 
         //thêm ghi chép
-        btnThemGhiChepNEC.setOnClickListener(mOnClickListener);
-        //thêm  mục chi
-        btnThemMucChiNEC.setOnClickListener(mOnAddListener);
+        //btnThemGhiChepNEC.setOnClickListener(mOnClickListener);
     }
-    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(NECActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    Button.OnClickListener mOnAddListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(NECActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
-        }
-    };
-
+//    Button.OnClickListener mOnClickListener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            //Toast.makeText(NECActivity.this,"Tính năng này sẽ cập nhật sau",Toast.LENGTH_SHORT).show();
+//        }
+//    };
     private void addArrayGhiChepNEC() {
         arrayGhiChepNEC=new ArrayList<>();
         GetDaTa();
@@ -124,8 +114,8 @@ public class NECActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        btnThemMucChiNEC=(Button)findViewById(R.id.buttonThemMucChiNEC);
-        btnThemGhiChepNEC=(Button)findViewById(R.id.buttonThemGhiChepNEC);
+        //btnThemMucChiNEC=(Button)findViewById(R.id.buttonThemMucChiNEC);
+        //btnThemGhiChepNEC=(Button)findViewById(R.id.buttonThemGhiChepNEC);
         txtTienBanDauNEC=(TextView) findViewById(R.id.textViewTienBanDauNEC);
         txtTienDaChiNEC=(TextView)findViewById(R.id.textViewTienDaChiNEC);
         txtTienConLaiNEC=(TextView)findViewById(R.id.textViewTienConLaiNEC);
