@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
 
     }
     private NavigationView.OnNavigationItemSelectedListener nOnNavigationDrawerItemSelectedListener=new NavigationView.OnNavigationItemSelectedListener() {
@@ -86,12 +87,16 @@ public class MainActivity extends AppCompatActivity implements DeleteDataTaiKhoa
 
             switch (item.getItemId()) {
                 case R.id.item_navigation_home:
+                    fragmentTransaction.replace(R.id.layout_navigation,new HomeFragment()).commit();
                     return true;
                 case R.id.item_navigation_taikhoan:
+                    fragmentTransaction.replace(R.id.layout_navigation,new TaiKhoanFragment()).commit();
                     return true;
                 case R.id.item_navigation_muchi:
+                    fragmentTransaction.replace(R.id.layout_navigation,new MucChiFragment()).commit();
                     return true;
                 case R.id.item_navigation_ghichep:
+                    fragmentTransaction.replace(R.id.layout_navigation,new GhiChepFragment()).commit();
                     return true;
             }
             return false;
