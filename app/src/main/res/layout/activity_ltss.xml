@@ -14,27 +14,7 @@
         app:title="Hũ LTSS"
         app:titleTextColor="#fc0202">
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/buttonThemMucChiLTSS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Thêm Mục Chi"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/buttonThemGhiChepLTSS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Thêm Ghi Chép"
-            android:layout_weight="1"/>
-    </LinearLayout>
+
     <ListView
         android:id="@+id/listGhiChepLTSS"
         android:layout_width="match_parent"
